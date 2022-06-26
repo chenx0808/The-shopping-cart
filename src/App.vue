@@ -11,7 +11,28 @@ import MyHeade from './components/MyHeade.vue'
 import MyGoods from './components/MyGoods.vue'
 import MyFooter from './components/MyFooter.vue'
 import 'bootstrap/dist/css/bootstrap.min.css'
-export default { components: { MyHeade, MyGoods, MyFooter } }
+import axios from 'axios'
+export default {
+  components: { MyHeade, MyGoods, MyFooter },
+  data () {
+    return {
+      goodlist: []
+    }
+  },
+  created () {
+    this.getGoods()
+    // console.log(this.res.data.list)
+  },
+  methods: {
+    async getGoods () {
+      const res = await axios({
+        url: '/api/cart'
+      })
+      this.goodlist = res.data.list
+      // console.log(res.data.list)
+    }
+  }
+}
 </script>
 
 <style scoped>
