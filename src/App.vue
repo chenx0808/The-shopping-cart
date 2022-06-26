@@ -1,7 +1,11 @@
 <template>
   <div id="app">
     <MyHeade title="购物车案例" background="tomato" color="#fff"></MyHeade>
-    <MyGoods></MyGoods>
+    <MyGoods
+      v-for="item in goodlist"
+      :key="item.goods_id"
+      :goods="item"
+    ></MyGoods>
     <MyFooter></MyFooter>
   </div>
 </template>
